@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.work.*
 import com.bignerdranch.android.photogallery.databinding.FragmentPhotoGalleryBinding
@@ -69,8 +71,13 @@ class PhotoGalleryFragment : Fragment() {
                     binding.photoGrid.adapter = PhotoListAdapter(
                         items.images
                     )  { photoPageUri ->
-                        val intent = Intent(Intent.ACTION_VIEW, photoPageUri)
-                        startActivity(intent)
+//                        val intent = Intent(Intent.ACTION_VIEW, photoPageUri)
+//                        startActivity(intent)
+
+                        findNavController().navigate(
+                            PhotoGalleryFragmentDirections.showPhoto(
+                                photoPageUri
+                            ) )
                     }
                     searchView?.setQuery(items.query, false)
                     updatePollingState(items.isPolling)
