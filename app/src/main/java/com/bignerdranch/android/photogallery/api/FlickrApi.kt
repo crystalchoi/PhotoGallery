@@ -7,6 +7,8 @@ import retrofit2.http.Query
 const val API_KEY = "51121d8083644241cc0497af060ca2b4"
 
 interface FlickrApi {
+
+
     @GET(
         "services/rest/?method=flickr.interestingness.getList" +
             "&api_key=$API_KEY" +
