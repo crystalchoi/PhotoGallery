@@ -14,8 +14,12 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.work.*
+import com.bignerdranch.android.photogallery.PhotoGalleryFragmentDirections
+import com.bignerdranch.android.photogallery.PhotoGalleryViewModel
+import com.bignerdranch.android.photogallery.PhotoListAdapter
 import com.bignerdranch.android.photogallery.databinding.FragmentPhotoGalleryBinding
 import com.bignerdranch.android.photogallery.worker.PollWorker
+import com.bignerdranch.android.photogallery.R
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
@@ -72,12 +76,11 @@ class PhotoGalleryFragment : Fragment() {
                         items.images
                     )  { photoPageUri ->
 //                        val intent = Intent(Intent.ACTION_VIEW, photoPageUri)
-//                        startActivity(intent)
+//                        startActivity(intent)x
 
                         findNavController().navigate(
-                            PhotoGalleryFragmentDirections.showPhoto(
-                                photoPageUri
-                            ) )
+                            PhotoGalleryFragmentDirections.showPhoto(photoPageUri)
+                        )
                     }
                     searchView?.setQuery(items.query, false)
                     updatePollingState(items.isPolling)
